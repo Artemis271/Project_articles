@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" styleClass="text-input" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_project.controllers.RegController">
+   <children>
+      <Label layoutX="84.0" layoutY="62.0" text="Регистрация" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="62.0" text="Авторизация" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="reg_login" focusTraversable="false" layoutX="57.0" layoutY="111.0" promptText="Введите логин" stylesheets="@../../../styles/main.css">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="reg_email" focusTraversable="false" layoutX="57.0" layoutY="161.0" promptText="Введите email" stylesheets="@../../../styles/main.css">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="reg_pass" focusTraversable="false" layoutX="57.0" layoutY="213.0" promptText="Введите пароль" stylesheets="@../../../styles/main.css">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </PasswordField>
+      <CheckBox fx:id="reg_rights" focusTraversable="false" layoutX="57.0" layoutY="269.0" mnemonicParsing="false" selected="true">
+         <graphic>
+            <Hyperlink focusTraversable="false" styleClass="link" stylesheets="@../../../styles/main.css" text="Пользовательское соглашение" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+         </graphic>
+      </CheckBox>
+      <Button fx:id="reg_btn" focusTraversable="false" layoutX="72.0" layoutY="308.0" mnemonicParsing="false" stylesheets="@../../../styles/main.css" text="Зарегистрироваться" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="auth_login" focusTraversable="false" layoutX="374.0" layoutY="113.0" promptText="Введите логин" stylesheets="@../../../styles/main.css">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="auth_pass" focusTraversable="false" layoutX="373.0" layoutY="161.0" promptText="Введите пароль" stylesheets="@../../../styles/main.css">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="auth_btn" focusTraversable="false" layoutX="426.0" layoutY="212.0" mnemonicParsing="false" stylesheets="@../../../styles/main.css" text="Войти" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
