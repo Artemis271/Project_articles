@@ -26,6 +26,7 @@ public class DB {
         System.out.println(dbConn.isValid(1000)); // Проверяем, является ли подключение действительным в течение 1 секунды
     }
 
+    // Проверка на логин
     public boolean isExistsUser(String login){
         String sql = "SELECT `id` FROM `users` WHERE `login` = ?";
         try {
@@ -38,6 +39,7 @@ public class DB {
         }
     }
 
+    // Занос данных в таблицу "users"
     public void regUser(String login, String email, String pass){
         String sql = "INSERT INTO `users` (`login`, `email`, `password`) VALUES(?, ?, ?)";
 
@@ -55,6 +57,7 @@ public class DB {
 
     }
 
+    // Проверку на автоизацию пользователя
     public boolean authUser(String login, String pass) {
         String sql = "SELECT `id` FROM `users` WHERE `login` = ? AND `password` = ?";
         try {

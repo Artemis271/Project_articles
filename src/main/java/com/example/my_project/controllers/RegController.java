@@ -1,5 +1,9 @@
 package com.example.my_project.controllers;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -7,11 +11,18 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import com.example.my_project.DB;
+import com.example.my_project.HelloApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import com.example.my_project.models.User;
 
 public class RegController {
 
@@ -53,11 +64,15 @@ public class RegController {
             registrationUser();
         });
         auth_btn.setOnAction(event -> {
-            authUser();
+            try {
+                authUser(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
-    private void authUser() {
+    private void authUser(ActionEvent event) throws IOException {
         String  login = auth_login.getCharacters().toString();
         String  pass = auth_pass.getCharacters().toString();
 
@@ -65,15 +80,26 @@ public class RegController {
         auth_pass.setStyle("-fx-border-color: #fafafa");
 
         if (login.length() <= 1)
-            reg_login.setStyle("-fx-border-color: #e06249");
+            auth_login.setStyle("-fx-border-color: #e06249");
         else if (pass.length() <= 3)
-            reg_pass.setStyle("-fx-border-color: #e06249");
+            auth_pass.setStyle("-fx-border-color: #e06249");
         else if(!db.authUser(login, md5String(pass)))
-            reg_btn.setText("Пользователя нет");
+            auth_btn.setText("Пользователя нет");
         else{
             auth_login.setText("");
             auth_pass.setText("");
-            reg_btn.setText("Все готово :)");
+            auth_btn.setText("Все готово :)");
+
+
+            FileOutputStream fos = new FileOutputStream("user.settings");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(new User(login));
+            oos.close();
+
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            HelloApplication.setScene("articles-panel.fxml", stage);
+
 
 
         }
