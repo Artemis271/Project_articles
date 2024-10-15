@@ -19,9 +19,12 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException, ClassNotFoundException {
 
+
         DB db = new DB();
+        db.isConnected();
 
         File file = new File("user.settings");
+        // Проверка на существование файла
         if (file.exists()){
             FileInputStream fis = new FileInputStream("user.settings");
             ObjectInputStream ois = new ObjectInputStream(fis);

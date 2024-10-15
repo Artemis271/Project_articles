@@ -130,7 +130,6 @@ public class RegController {
             reg_email.setText("");
             reg_pass.setText("");
             reg_btn.setText("Все готово :)");
-
         }
     }
 

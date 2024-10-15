@@ -70,4 +70,30 @@ public class DB {
             throw new RuntimeException(e);
         }
     }
+
+    public ResultSet getArticles(){
+        String sql = "SELECT `title`, `intro` FROM `articles`";
+        try {
+            Statement statement = getDBConnection().createStatement();
+            return statement.executeQuery(sql);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void addArticle(String title, String intro, String full_text) {
+        String sql = "INSERT INTO `articles` (`title`, `intro`, `text`) VALUES(?, ?, ?)";
+
+        try {
+            PreparedStatement prSt = getDBConnection().prepareStatement(sql);
+            prSt.setString(1,title);
+            prSt.setString(2,intro);
+            prSt.setString(3,full_text);
+            prSt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
